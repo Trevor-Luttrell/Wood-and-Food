@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="Wood-and-Food"
+run/main_scene="uid://j21ccvhsgulq"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=480
+window/size/viewport_height=384
 
 [dotnet]
 
