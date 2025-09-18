@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://j21ccvhsgulq"]
+[gd_scene load_steps=12 format=4 uid="uid://j21ccvhsgulq"]
 
 [ext_resource type="Texture2D" uid="uid://dbvwwpyk4lnkh" path="res://atlas_floor-16x16.png" id="1_iwxth"]
 [ext_resource type="Texture2D" uid="uid://br4cf1fy86sfi" path="res://Bush 16x16 (002)1.png" id="2_4krb6"]
 [ext_resource type="Texture2D" uid="uid://itoqh6wkibja" path="res://0x72_DungeonTilesetII_v1.7.png" id="2_lh4fn"]
 [ext_resource type="Texture2D" uid="uid://cgfyakpjex02u" path="res://GrassTileset.png" id="3_lh4fn"]
+[ext_resource type="PackedScene" uid="uid://c8aso6p4kwo1m" path="res://player.tscn" id="5_54khf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6cpde"]
 texture = ExtResource("1_iwxth")
@@ -999,5 +1000,5 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAAAAAMAAQAAAAAAAAAIAAcAAQAAAAAAAAAEAAYAAQAAAAAAAAAKAAQAAQAAAAAAAAAMAAgAAQAAAAAAAAAFAAIAAQAAAAAAAAAEAAgAAwAEAAYAAAABAAUAAwAEAAYAAAAIAAQAAwAEAAYAAAANAAYAAwAEAAYAAAAIAAkAAwAEAAYAAAAMAAMAAwAEAAYAAAAEAAQAAwAEAAYAAAAIAAIAAwAEAAYAAAABAAkAAwABAAgAAAAKAAMAAwABAAgAAAAFAAUAAwABAAgAAAAIAAgAAwABAAgAAAAMAAkAAwABAAgAAAACAAEAAwABAAgAAAABAAQAAwABAAgAAAA=")
 tile_set = SubResource("TileSet_g4otn")
 
-[node name="Player" type="AnimatedSprite2D" parent="."]
-position = Vector2(853, 185)
+[node name="Player" parent="." instance=ExtResource("5_54khf")]
+position = Vector2(235, 173)
