@@ -16,6 +16,7 @@ public partial class Player : Node2D
 	public override void _Ready()
 	{
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		sprite.Play("default");
 	}
 	
 	public void Move(Direction dir)
