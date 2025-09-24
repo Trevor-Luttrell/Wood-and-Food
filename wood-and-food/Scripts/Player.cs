@@ -11,12 +11,22 @@ public partial class Player : Node2D
 	[Export]
 	float MoveTimeVert = 1.0F / 3.0F;
 	
+	public Vector2I Coords
+	{
+		get {
+			return new Vector2I(
+				(int)Math.Round(Position.X) / (int)Constants.TILE_WIDTH,
+				(int)Math.Round(Position.Y) / (int)Constants.TILE_HEIGHT
+			);
+		}
+	}
+	
 	private AnimatedSprite2D sprite;
 	
 	public override void _Ready()
 	{
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		sprite.Play("default");
+		sprite.Play("default"); 
 	}
 	
 	public void Move(Direction dir)

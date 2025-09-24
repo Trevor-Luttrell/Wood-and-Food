@@ -1134,14 +1134,14 @@ tile_set = SubResource("TileSet_g4otn")
 script = ExtResource("6_g4otn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-position = Vector2(240, 144)
+position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_3e43v")
 animation = &"move"
 
 [node name="Enemy" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
-position = Vector2(16, 16)
+position = Vector2(80, 16)
 sprite_frames = SubResource("SpriteFrames_71fmg")
 autoplay = "default"
 frame = 3
