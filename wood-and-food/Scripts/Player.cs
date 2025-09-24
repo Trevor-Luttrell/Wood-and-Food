@@ -61,6 +61,7 @@ public partial class Player : Node2D
 	private void OnTweenFinish()
 	{
 		sprite.Stop();
+		sprite.Play("default");
 		EmitSignal(SignalName.OnMoveFinished);
 	}
 }

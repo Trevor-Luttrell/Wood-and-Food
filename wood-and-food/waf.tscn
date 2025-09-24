@@ -1092,6 +1092,5 @@ script = ExtResource("6_g4otn")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(240, 144)
 sprite_frames = SubResource("SpriteFrames_3e43v")
-animation = &"move"
 
 [connection signal="OnMoveFinished" from="Player" to="." method="OnPlayerMoveFinished"]
