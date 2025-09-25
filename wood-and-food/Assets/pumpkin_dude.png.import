@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbvwwpyk4lnkh"
-path="res://.godot/imported/atlas_floor-16x16.png-c836c95a478bf0938a782bb6744338b0.ctex"
+uid="uid://dimf64ceqkdnq"
+path="res://.godot/imported/pumpkin_dude.png-fc776dabe9d94e9d31c447844cff1b35.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://atlas_floor-16x16.png"
-dest_files=["res://.godot/imported/atlas_floor-16x16.png-c836c95a478bf0938a782bb6744338b0.ctex"]
+source_file="res://Assets/pumpkin_dude.png"
+dest_files=["res://.godot/imported/pumpkin_dude.png-fc776dabe9d94e9d31c447844cff1b35.ctex"]
 
 [params]
 

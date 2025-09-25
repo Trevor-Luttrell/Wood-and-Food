@@ -9,10 +9,13 @@ public partial class Waf : Node2D
 	private Player player = null;
 	private TileMapLayer resources = null;
 	private TileMapLayer floor = null;
+	private Campfire campfire = null;
 	
 	public override void _Ready()
 	{
 		player = GetNode<Player>("Player");
+		campfire = GetNode<Campfire>("Campfire");
+		
 		resources = GetNode<TileMapLayer>("Resources");
 		floor = GetNode<TileMapLayer>("Board");
 	}
@@ -55,8 +58,9 @@ public partial class Waf : Node2D
 	}
 	
 	private bool PlayerCanMove(Direction dir){
-		var targetCell = player.Coords.Offset(dir);
-		GD.Print(targetCell);
-		return resources.GetCellTileData(targetCell) == null && floor.GetCellTileData(targetCell) != null;
+		var TargetCell = player.Coords.Offset(dir);
+		var CampfireCell = campfire.Coords;
+		
+		return resources.GetCellTileData(TargetCell) == null && floor.GetCellTileData(TargetCell) != null && TargetCell != CampfireCell;
 	}
 }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dimf64ceqkdnq"
-path="res://.godot/imported/pumpkin_dude.png-dcf73c80e04037d1145201b030d2caa0.ctex"
+uid="uid://itoqh6wkibja"
+path="res://.godot/imported/0x72_DungeonTilesetII_v1.7.png-c6fc6f2e333f8f5f71f383c3757fd62d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pumpkin_dude.png"
-dest_files=["res://.godot/imported/pumpkin_dude.png-dcf73c80e04037d1145201b030d2caa0.ctex"]
+source_file="res://Assets/0x72_DungeonTilesetII_v1.7.png"
+dest_files=["res://.godot/imported/0x72_DungeonTilesetII_v1.7.png-c6fc6f2e333f8f5f71f383c3757fd62d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br4cf1fy86sfi"
-path="res://.godot/imported/Bush 16x16 (002)1.png-db5d68ed5fec67a98cea6a9573f5e4cf.ctex"
+uid="uid://bjx2o3pfi143m"
+path="res://.godot/imported/Firepit3.png-8467c45dd3c6d735e08a94970806759b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Bush 16x16 (002)1.png"
-dest_files=["res://.godot/imported/Bush 16x16 (002)1.png-db5d68ed5fec67a98cea6a9573f5e4cf.ctex"]
+source_file="res://Assets/Firepit3.png"
+dest_files=["res://.godot/imported/Firepit3.png-8467c45dd3c6d735e08a94970806759b.ctex"]
 
 [params]
 
