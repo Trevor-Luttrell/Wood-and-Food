@@ -49,6 +49,7 @@ public partial class Waf : Node2D
 				player.Move((Direction)movedir);
 				state = State.Moving;
 			}
+			CheckForHeal((Direction)movedir);
 		}
 	}
 	
@@ -62,5 +63,14 @@ public partial class Waf : Node2D
 		var CampfireCell = campfire.Coords;
 		
 		return resources.GetCellTileData(TargetCell) == null && floor.GetCellTileData(TargetCell) != null && TargetCell != CampfireCell;
+	}
+	
+	private void CheckForHeal(Direction dir){
+		var TargetCell = player.Coords.Offset(dir);
+		var CampfireCell = campfire.Coords;
+		
+		if(TargetCell == CampfireCell){
+			player.Heal();
+		}
 	}
 }

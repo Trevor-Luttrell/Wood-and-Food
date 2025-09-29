@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://j21ccvhsgulq"]
+[gd_scene load_steps=39 format=4 uid="uid://j21ccvhsgulq"]
 
 [ext_resource type="Script" uid="uid://dph7aadxhdo34" path="res://Scripts/Waf.cs" id="1_g4otn"]
 [ext_resource type="Texture2D" uid="uid://dbvwwpyk4lnkh" path="res://Assets/atlas_floor-16x16.png" id="1_iwxth"]
@@ -1079,6 +1079,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dgr2x"]
+bg_color = Color(0.424598, 0.595128, 0.915983, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3e43v"]
 atlas = ExtResource("9_f6kgr")
 region = Rect2(0, 0, 16, 32)
@@ -1163,6 +1166,16 @@ script = ExtResource("6_g4otn")
 position = Vector2(16, 16)
 sprite_frames = SubResource("SpriteFrames_3e43v")
 animation = &"move"
+
+[node name="HealthBar" type="ProgressBar" parent="Player"]
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 29.0
+offset_bottom = 8.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dgr2x")
+max_value = 10.0
+value = 10.0
+show_percentage = false
 
 [node name="Enemy" type="Node2D" parent="."]
 

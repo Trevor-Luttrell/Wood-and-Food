@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public partial class Player : Node2D
-{
+{	
 	[Signal]
 	public delegate void OnMoveFinishedEventHandler();
 	
@@ -10,6 +10,13 @@ public partial class Player : Node2D
 	float MoveTimeHorz = 1.0F / 3.0F;
 	[Export]
 	float MoveTimeVert = 1.0F / 3.0F;
+	
+	[Export]
+	int Stamina = 10;
+	[Export]
+	int MaxStamina = 10;
+	
+	public int MoveCounter = 0;
 	
 	public Vector2I Coords
 	{
@@ -22,9 +29,15 @@ public partial class Player : Node2D
 	}
 	
 	private AnimatedSprite2D sprite;
+	private ProgressBar HealthBar;
 	
 	public override void _Ready()
 	{
+		Stamina = MaxStamina;
+		HealthBar = GetNode<ProgressBar>("HealthBar");
+		HealthBar.MaxValue = MaxStamina;
+		HealthBar.Value = Stamina;
+		
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		sprite.Play("default"); 
 	}
@@ -34,6 +47,10 @@ public partial class Player : Node2D
 		Vector2 offset = Vector2.Zero;
 		string animation = "";
 		float time = 0.0F;
+		MoveCounter += 1;
+		Stamina -= 1;
+		
+		HealthBar.Value = Stamina;
 		
 		switch(dir)
 		{
@@ -67,6 +84,12 @@ public partial class Player : Node2D
 			tween.TweenProperty(this, "position", Position + offset, time);
 			tween.Finished += OnTweenFinish;
 		}
+	}
+	
+	public void Heal()
+	{
+		Stamina = MaxStamina;
+		HealthBar.Value = Stamina;
 	}
 	
 	private void OnTweenFinish()
