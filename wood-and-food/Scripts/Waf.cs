@@ -45,12 +45,17 @@ public partial class Waf : Node2D
 		
 		if (movedir != null)
 		{
-			if(PlayerCanMove((Direction)movedir)){
-				player.Move((Direction)movedir);
-				state = State.Moving;
-			}
-			CheckForHeal((Direction)movedir);
+			RunPlayerMoveChecks((Direction)movedir);
 		}
+	}
+	
+	public void RunPlayerMoveChecks(Direction dir){
+		if(PlayerCanMove(dir)){
+				player.Move(dir);
+				state = State.Moving;
+		}
+		
+		CheckForHeal(dir);
 	}
 	
 	public void OnPlayerMoveFinished()

@@ -30,6 +30,7 @@ public partial class Player : Node2D
 	
 	private AnimatedSprite2D sprite;
 	private ProgressBar HealthBar;
+	private Label StaminaLabel;
 	
 	public override void _Ready()
 	{
@@ -37,6 +38,8 @@ public partial class Player : Node2D
 		HealthBar = GetNode<ProgressBar>("HealthBar");
 		HealthBar.MaxValue = MaxStamina;
 		HealthBar.Value = Stamina;
+		
+		StaminaLabel = GetNode<Label>("../CanvasLayer/Panel/StaminaLabel");
 		
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		sprite.Play("default"); 
@@ -50,6 +53,7 @@ public partial class Player : Node2D
 		MoveCounter += 1;
 		Stamina -= 1;
 		
+		UpdateStaminaLabel();
 		HealthBar.Value = Stamina;
 		
 		switch(dir)
@@ -90,6 +94,8 @@ public partial class Player : Node2D
 	{
 		Stamina = MaxStamina;
 		HealthBar.Value = Stamina;
+		
+		UpdateStaminaLabel();
 	}
 	
 	private void OnTweenFinish()
@@ -97,5 +103,10 @@ public partial class Player : Node2D
 		sprite.Stop();
 		sprite.Play("default");
 		EmitSignal(SignalName.OnMoveFinished);
+	}
+	
+	private void UpdateStaminaLabel()
+	{
+		StaminaLabel.Text = $"Stamina: {Stamina}/{MaxStamina}";
 	}
 }
