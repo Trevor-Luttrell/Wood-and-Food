@@ -11,7 +11,7 @@ public partial class Waf : Node2D
 	private TileMapLayer floor = null;
 	private Campfire campfire = null;
 
-	private Enemy enemy ;
+	private Enemy enemy;
 
 	public override void _Ready()
 	{
@@ -20,7 +20,7 @@ public partial class Waf : Node2D
 		enemy = GetNode<Enemy>("Enemy");
 		resources = GetNode<TileMapLayer>("Resources");
 		floor = GetNode<TileMapLayer>("Board");
-		 player.OnMoveFinished += OnPlayerMoveFinished;
+		player.OnMoveFinished += OnPlayerMoveFinished;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -54,22 +54,30 @@ public partial class Waf : Node2D
 
 	public void RunPlayerMoveChecks(Direction dir)
 	{
-		if (PlayerCanMove(dir))
+		if(enemy.Visible == true)
+		{
+			enemy.DamageEnemy();
+			player.DamagePlayer();
+		}
+		else if (PlayerCanMove(dir))
 		{
 			player.Move(dir);
 			state = State.Moving;
 		}
-
-		CheckForHeal(dir);
+		else
+		{
+			CheckForHeal(dir);
+		}
 	}
 
 	public void OnPlayerMoveFinished()
 	{
 		state = State.Ready;
-	if (player.MoveCounter % 5 == 0)
-      {
-        SpawnEnemyNearPlayer();
-      }
+		
+		if (player.MoveCounter % 5 == 0)
+	 	{
+			SpawnEnemyNearPlayer();
+		}
 	}
 
 	private bool PlayerCanMove(Direction dir)
@@ -90,17 +98,17 @@ public partial class Waf : Node2D
 			player.Heal();
 		}
 	}
-
-
-
+	
 	private void SpawnEnemyNearPlayer()
 	{
+		enemy.EnemyHealth = 10;
+		
 		var directions = new Direction[]
 		{
-		Direction.Up,
-		Direction.Down,
-		Direction.Left,
-		Direction.Right
+			Direction.Up,
+			Direction.Down,
+			Direction.Left,
+			Direction.Right
 		};
 
 		foreach (var dir in directions)
@@ -111,22 +119,10 @@ public partial class Waf : Node2D
 				floor.GetCellTileData(targetCell) != null &&
 				targetCell != campfire.Coords)
 			{
-				enemy.SpawnAt(targetCell); // call Enemy.cs method
-				GD.Print($"Enemy spawned at {targetCell}");
+				enemy.SpawnAt(targetCell);
 				return;
 			}
 		}
-
-		GD.Print("No valid spot near player to spawn enemy.");
-
-
-
 	}
-
-
-
 	
-
-
-
 }

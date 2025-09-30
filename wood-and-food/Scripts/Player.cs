@@ -12,9 +12,9 @@ public partial class Player : Node2D
 	float MoveTimeVert = 1.0F / 3.0F;
 	
 	[Export]
-	int Stamina = 10;
+	int Stamina = 20;
 	[Export]
-	int MaxStamina = 10;
+	int MaxStamina = 20;
 	
 	public int MoveCounter = 0;
 	
@@ -51,7 +51,7 @@ public partial class Player : Node2D
 		string animation = "";
 		float time = 0.0F;
 		MoveCounter += 1;
-		Stamina -= 1;
+		Stamina -= 2;
 		
 		UpdateStaminaLabel();
 		HealthBar.Value = Stamina;
@@ -108,5 +108,12 @@ public partial class Player : Node2D
 	private void UpdateStaminaLabel()
 	{
 		StaminaLabel.Text = $"Stamina: {Stamina}/{MaxStamina}";
+	}
+	
+	public void DamagePlayer()
+	{
+		Stamina -= 1;
+		HealthBar.Value = Stamina;
+		UpdateStaminaLabel();
 	}
 }
