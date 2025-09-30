@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://j21ccvhsgulq"]
+[gd_scene load_steps=42 format=4 uid="uid://j21ccvhsgulq"]
 
 [ext_resource type="Script" uid="uid://dph7aadxhdo34" path="res://Scripts/Waf.cs" id="1_g4otn"]
 [ext_resource type="Texture2D" uid="uid://dbvwwpyk4lnkh" path="res://Assets/atlas_floor-16x16.png" id="1_iwxth"]
@@ -1126,6 +1126,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_waphi"]
+bg_color = Color(1, 0.00392157, 0.0941176, 1)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_kjncl"]
 animations = [{
 "frames": [{
@@ -1191,6 +1194,14 @@ sprite_frames = SubResource("SpriteFrames_71fmg")
 autoplay = "default"
 frame = 3
 frame_progress = 0.262799
+
+[node name="EnemyBar" type="ProgressBar" parent="Enemy"]
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 31.0
+offset_bottom = 10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_waphi")
+show_percentage = false
 
 [node name="Campfire" type="Node2D" parent="."]
 position = Vector2(224, 160)

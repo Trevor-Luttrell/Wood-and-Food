@@ -96,6 +96,8 @@ public partial class Player : Node2D
 		HealthBar.Value = Stamina;
 		
 		UpdateStaminaLabel();
+		
+		MoveCounter = 0;
 	}
 	
 	private void OnTweenFinish()
