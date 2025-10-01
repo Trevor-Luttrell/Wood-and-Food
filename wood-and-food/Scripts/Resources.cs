@@ -1,9 +1,20 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Resources : TileMapLayer
 {
-	//private int ResourceHealth = 10;
+	private Dictionary<Vector2I, int> ResourceHealth = new();
+	
+	private int GetHealth(Vector2I coords)
+	{
+		if(!ResourceHealth.ContainsKey(coords))
+		{
+			ResourceHealth[coords] = 10;
+		}
+		
+		return ResourceHealth[coords];
+	}
 	
 	public string GetResourceType(Vector2I ResourceCoords)
 	{
@@ -12,8 +23,21 @@ public partial class Resources : TileMapLayer
 		return tileData.GetCustomData("ResourceType").AsString();
 	}
 	
-	public void DamageResource()
+	public void DamageResource(Vector2I coords)
 	{
-		//ResourceHealth -= 2;
+		int currentHealth = GetHealth(coords);
+		
+		currentHealth -= 2;
+		
+		ResourceHealth[coords] = currentHealth;
+		
+		GD.Print($"Tile at {coords} now has {currentHealth} HP");
+		
+		if (currentHealth <= 0)
+		{
+			SetCell(coords, -1);
+			ResourceHealth.Remove(coords);
+			GD.Print($"Resource at {coords} destroyed!");
+		}
 	}
 }

@@ -67,20 +67,9 @@ public partial class Waf : Node2D
 		else if(resources.GetCellTileData(player.Coords.Offset(dir)) != null)
 		{
 			string ResourceType = resources.GetResourceType(player.Coords.Offset(dir));
-			//resources.DamageResource();
+			resources.DamageResource(player.Coords.Offset(dir));
 			
-			if(ResourceType == "Wood")
-			{
-				//give player wood
-			}
-			else if(ResourceType == "Stone")
-			{
-				//Give player stone
-			}
-			else
-			{
-				//Give player berry
-			}
+			player.GivePlayerItem(ResourceType);
 		}
 		else
 		{

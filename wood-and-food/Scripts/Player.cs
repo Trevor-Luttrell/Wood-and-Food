@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Player : Node2D
 {	
@@ -17,6 +18,13 @@ public partial class Player : Node2D
 	int MaxStamina = 20;
 	
 	public int MoveCounter = 0;
+	
+	private Dictionary<string, int> inventory = new Dictionary<string, int>()
+	{
+		{"Food", 0},
+		{"Wood", 0},
+		{"Berry", 0}
+	};
 	
 	public Vector2I Coords
 	{
@@ -117,5 +125,10 @@ public partial class Player : Node2D
 		Stamina -= 1;
 		HealthBar.Value = Stamina;
 		UpdateStaminaLabel();
+	}
+	
+	public void GivePlayerItem(string ResourceType)
+	{
+		inventory[ResourceType]++;
 	}
 }
