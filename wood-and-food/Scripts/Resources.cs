@@ -10,7 +10,10 @@ public partial class Resources : TileMapLayer
 	{
 		if(!ResourceHealth.ContainsKey(coords))
 		{
-			ResourceHealth[coords] = 10;
+			if(GetResourceType(coords) != "Crystal")
+				ResourceHealth[coords] = 10;
+			else
+				ResourceHealth[coords] = 1;
 		}
 		
 		return ResourceHealth[coords];
@@ -19,7 +22,6 @@ public partial class Resources : TileMapLayer
 	public string GetResourceType(Vector2I ResourceCoords)
 	{
 		var tileData = GetCellTileData(ResourceCoords);
-		
 		return tileData.GetCustomData("ResourceType").AsString();
 	}
 	
@@ -28,16 +30,12 @@ public partial class Resources : TileMapLayer
 		int currentHealth = GetHealth(coords);
 		
 		currentHealth -= 2;
-		
 		ResourceHealth[coords] = currentHealth;
-		
-		GD.Print($"Tile at {coords} now has {currentHealth} HP");
 		
 		if (currentHealth <= 0)
 		{
 			SetCell(coords, -1);
 			ResourceHealth.Remove(coords);
-			GD.Print($"Resource at {coords} destroyed!");
 		}
 	}
 }

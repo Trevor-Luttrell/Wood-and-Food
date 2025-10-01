@@ -23,7 +23,8 @@ public partial class Player : Node2D
 	{
 		{"Rock", 0},
 		{"Wood", 0},
-		{"Berry", 0}
+		{"Berry", 0},
+		{"Crystal", 0}
 	};
 	
 	public Vector2I Coords
@@ -42,6 +43,9 @@ public partial class Player : Node2D
 	private Label BerryLabel;
 	private Label WoodLabel;
 	private Label RockLabel;
+	private Label CrystalLabel;
+	private Panel WinScreen;
+	private Panel DeathScreen;
 	
 	public override void _Ready()
 	{
@@ -55,6 +59,10 @@ public partial class Player : Node2D
 		BerryLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/BerryLabel");
 		WoodLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/WoodLabel");
 		RockLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/RockLabel");
+		CrystalLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/CrystalLabel");
+		
+		WinScreen = GetNode<Panel>("../CanvasWinScreen/WinScreen");
+		DeathScreen = GetNode<Panel>("../CanvasDeathScreen/DeathScreen");
 		
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		sprite.Play("default"); 
@@ -125,6 +133,15 @@ public partial class Player : Node2D
 	private void UpdateStaminaLabel()
 	{
 		StaminaLabel.Text = $"Stamina: {Stamina}/{MaxStamina}";
+		CheckForDeath();
+	}
+	
+	private void CheckForDeath()
+	{
+		if(Stamina <= 0)
+		{
+			DeathScreen.Visible = true;
+		}
 	}
 	
 	public void DamagePlayer()
@@ -139,11 +156,20 @@ public partial class Player : Node2D
 		BerryLabel.Text = $"Berry: {inventory["Berry"]}";
 		WoodLabel.Text = $"Wood: {inventory["Wood"]}";
 		RockLabel.Text = $"Rock: {inventory["Rock"]}";
+		CrystalLabel.Text = $"Crystal: {inventory["Crystal"]}";
 	}
 	
 	public void GivePlayerItem(string ResourceType)
 	{
 		inventory[ResourceType]++;
 		UpdateInventoryLabels();
+	}
+	
+	public void CheckForWin()
+	{
+		if(inventory["Crystal"] == 4)
+		{
+			WinScreen.Visible = true;
+		}
 	}
 }

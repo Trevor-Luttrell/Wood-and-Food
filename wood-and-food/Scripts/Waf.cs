@@ -69,6 +69,7 @@ public partial class Waf : Node2D
 			string ResourceType = resources.GetResourceType(player.Coords.Offset(dir));
 			resources.DamageResource(player.Coords.Offset(dir));
 			player.GivePlayerItem(ResourceType);
+			player.CheckForWin();
 		}
 		else
 		{
@@ -90,15 +91,15 @@ public partial class Waf : Node2D
 	{
 		var TargetCell = player.Coords.Offset(dir);
 		var CampfireCell = campfire.Coords;
-
+		
 		return resources.GetCellTileData(TargetCell) == null && floor.GetCellTileData(TargetCell) != null && TargetCell != CampfireCell;
 	}
-
+	
 	private void CheckForHeal(Direction dir)
 	{
 		var TargetCell = player.Coords.Offset(dir);
 		var CampfireCell = campfire.Coords;
-
+		
 		if (TargetCell == CampfireCell)
 		{
 			player.Heal();
@@ -120,7 +121,7 @@ public partial class Waf : Node2D
 		foreach (var dir in directions)
 		{
 			var targetCell = player.Coords.Offset(dir);
-
+			
 			if (resources.GetCellTileData(targetCell) == null &&
 				floor.GetCellTileData(targetCell) != null &&
 				targetCell != campfire.Coords)
