@@ -21,7 +21,7 @@ public partial class Player : Node2D
 	
 	private Dictionary<string, int> inventory = new Dictionary<string, int>()
 	{
-		{"Food", 0},
+		{"Rock", 0},
 		{"Wood", 0},
 		{"Berry", 0}
 	};
@@ -39,6 +39,9 @@ public partial class Player : Node2D
 	private AnimatedSprite2D sprite;
 	private ProgressBar HealthBar;
 	private Label StaminaLabel;
+	private Label BerryLabel;
+	private Label WoodLabel;
+	private Label RockLabel;
 	
 	public override void _Ready()
 	{
@@ -48,6 +51,10 @@ public partial class Player : Node2D
 		HealthBar.Value = Stamina;
 		
 		StaminaLabel = GetNode<Label>("../CanvasLayer/Panel/StaminaLabel");
+		
+		BerryLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/BerryLabel");
+		WoodLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/WoodLabel");
+		RockLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/RockLabel");
 		
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		sprite.Play("default"); 
@@ -127,8 +134,16 @@ public partial class Player : Node2D
 		UpdateStaminaLabel();
 	}
 	
+	private void UpdateInventoryLabels()
+	{
+		BerryLabel.Text = $"Berry: {inventory["Berry"]}";
+		WoodLabel.Text = $"Wood: {inventory["Wood"]}";
+		RockLabel.Text = $"Rock: {inventory["Rock"]}";
+	}
+	
 	public void GivePlayerItem(string ResourceType)
 	{
 		inventory[ResourceType]++;
+		UpdateInventoryLabels();
 	}
 }

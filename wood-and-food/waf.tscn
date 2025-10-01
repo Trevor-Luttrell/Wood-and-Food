@@ -1133,7 +1133,7 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_waphi"]
-bg_color = Color(1, 0.00392157, 0.0941176, 1)
+bg_color = Color(1, 0, 0.0196078, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kjncl"]
 animations = [{
@@ -1207,7 +1207,9 @@ offset_left = 2.0
 offset_top = 6.0
 offset_right = 31.0
 offset_bottom = 10.0
-theme_override_styles/background = SubResource("StyleBoxFlat_waphi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_waphi")
+max_value = 10.0
+value = 10.0
 show_percentage = false
 
 [node name="Campfire" type="Node2D" parent="."]
@@ -1235,7 +1237,27 @@ anchor_right = 1.0
 anchor_bottom = 0.909
 offset_top = -0.0320015
 offset_bottom = 0.0319824
-columns = 2
+
+[node name="BerryLabel" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Berry:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WoodLabel" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Wood:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RockLabel" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Rock:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StaminaLabel" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0

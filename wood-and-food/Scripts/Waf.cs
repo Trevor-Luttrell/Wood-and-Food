@@ -68,7 +68,6 @@ public partial class Waf : Node2D
 		{
 			string ResourceType = resources.GetResourceType(player.Coords.Offset(dir));
 			resources.DamageResource(player.Coords.Offset(dir));
-			
 			player.GivePlayerItem(ResourceType);
 		}
 		else
