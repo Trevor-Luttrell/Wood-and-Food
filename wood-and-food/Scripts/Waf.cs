@@ -7,7 +7,7 @@ public partial class Waf : Node2D
 
 	private State state = State.Ready;
 	private Player player = null;
-	private TileMapLayer resources = null;
+	private Resources resources = null;
 	private TileMapLayer floor = null;
 	private Campfire campfire = null;
 
@@ -18,7 +18,7 @@ public partial class Waf : Node2D
 		player = GetNode<Player>("Player");
 		campfire = GetNode<Campfire>("Campfire");
 		enemy = GetNode<Enemy>("Enemy");
-		resources = GetNode<TileMapLayer>("Resources");
+		resources = GetNode<Resources>("Resources");
 		floor = GetNode<TileMapLayer>("Board");
 		player.OnMoveFinished += OnPlayerMoveFinished;
 	}
@@ -59,10 +59,28 @@ public partial class Waf : Node2D
 			enemy.DamageEnemy();
 			player.DamagePlayer();
 		}
-		else if (PlayerCanMove(dir))
+		else if(PlayerCanMove(dir))
 		{
 			player.Move(dir);
 			state = State.Moving;
+		}
+		else if(resources.GetCellTileData(player.Coords.Offset(dir)) != null)
+		{
+			string ResourceType = resources.GetResourceType(player.Coords.Offset(dir));
+			//resources.DamageResource();
+			
+			if(ResourceType == "Wood")
+			{
+				//give player wood
+			}
+			else if(ResourceType == "Stone")
+			{
+				//Give player stone
+			}
+			else
+			{
+				//Give player berry
+			}
 		}
 		else
 		{
