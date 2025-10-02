@@ -23,8 +23,13 @@ public partial class Waf : Node2D
 		player.OnMoveFinished += OnPlayerMoveFinished;
 	}
 
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
+		 if (@event.IsActionPressed("eat"))
+    	{
+        	player.EatBerry();
+        	return; // don’t process as movement
+    	}
 		if (state != State.Ready) return;
 
 		Direction? movedir = null;
@@ -45,7 +50,8 @@ public partial class Waf : Node2D
 		{
 			movedir = Direction.Down;
 		}
-
+	
+		
 		if (movedir != null)
 		{
 			RunPlayerMoveChecks((Direction)movedir);
