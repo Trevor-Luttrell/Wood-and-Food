@@ -1271,6 +1271,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Crystal: 0"
 
+[node name="SwordLabel" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Sword: 0"
+
+[node name="AxeLabel" type="Label" parent="CanvasLayer/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Axe: 0"
+
 [node name="StaminaLabel" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_top = 320.0
