@@ -24,7 +24,10 @@ public partial class Player : Node2D
 		{"Rock", 0},
 		{"Wood", 0},
 		{"Berry", 0},
-		{"Crystal", 0}
+		{"Crystal", 0},
+		{"Sword", 0},
+		{"Axe", 0}
+
 	};
 
 	public Vector2I Coords
@@ -45,6 +48,9 @@ public partial class Player : Node2D
 	private Label WoodLabel;
 	private Label RockLabel;
 	private Label CrystalLabel;
+	private Label SwordLabel;
+	private Label AxeLabel;
+
 	private Panel WinScreen;
 	private Panel DeathScreen;
 
@@ -61,7 +67,8 @@ public partial class Player : Node2D
 		WoodLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/WoodLabel");
 		RockLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/RockLabel");
 		CrystalLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/CrystalLabel");
-
+		SwordLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/SwordLabel");
+		AxeLabel = GetNode<Label>("../CanvasLayer/Panel/GridContainer/AxeLabel");
 		WinScreen = GetNode<Panel>("../CanvasWinScreen/WinScreen");
 		DeathScreen = GetNode<Panel>("../CanvasDeathScreen/DeathScreen");
 
@@ -158,12 +165,15 @@ public partial class Player : Node2D
 		WoodLabel.Text = $"Wood: {inventory["Wood"]}";
 		RockLabel.Text = $"Rock: {inventory["Rock"]}";
 		CrystalLabel.Text = $"Crystal: {inventory["Crystal"]}";
+		SwordLabel.Text = $"Sword: {inventory["Sword"]}";
+		AxeLabel.Text = $"Axe: {inventory["Axe"]}";
 	}
 
 	public void GivePlayerItem(string ResourceType)
 	{
 		inventory[ResourceType]++;
 		UpdateInventoryLabels();
+		CheckForCrafting();
 	}
 
 	public void CheckForWin()
@@ -180,8 +190,8 @@ public partial class Player : Node2D
 		{
 			inventory["Berry"] -= 1;
 
-			// Restore stamina, but not above max
-			int restoreAmount = 5; // tweak this number for balance
+
+			int restoreAmount = 5;
 			Stamina = Math.Min(Stamina + restoreAmount, MaxStamina);
 
 			HealthBar.Value = Stamina;
@@ -194,6 +204,38 @@ public partial class Player : Node2D
 		{
 			GD.Print("No berries left!");
 		}
+	}
+
+
+	public void CheckForCrafting()
+	{
+		// Axe crafting: needs 3 wood
+		if (inventory["Wood"] >= 3 && inventory["Axe"] == 0)
+		{
+			inventory["Axe"] = 1; // give axe
+			inventory["Wood"] -= 3; // consume wood
+			GD.Print("Crafted an Axe!");
+			UpdateInventoryLabels();
+		}
+
+		// Sword crafting: needs 4 rocks
+		if (inventory["Rock"] >= 4 && inventory["Sword"] == 0)
+		{
+			inventory["Sword"] = 1; // give sword
+			inventory["Rock"] -= 4; // consume rocks
+			GD.Print("Crafted a Sword!");
+			UpdateInventoryLabels();
+		}
+	}
+
+		public bool HasSword()
+	{
+		return inventory["Sword"] > 0;
+	}
+
+	public bool HasAxe()
+	{
+		return inventory["Axe"] > 0;
 	}
 
 }
