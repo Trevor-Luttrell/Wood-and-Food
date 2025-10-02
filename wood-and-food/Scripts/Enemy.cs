@@ -16,7 +16,7 @@ public partial class Enemy : Node2D
 		Visible = false;
 		
 		EnemyBar = GetNode<ProgressBar>("EnemyBar");
-		EnemyBar.MaxValue = EnemyHealth;
+		EnemyBar.MaxValue = MaxEnemyHealth;
 		EnemyBar.Value = EnemyHealth;
 	}
 
@@ -26,18 +26,23 @@ public partial class Enemy : Node2D
 			coords.X * Constants.TILE_WIDTH,
 			coords.Y * Constants.TILE_HEIGHT
 		);
+
+		// Reset health every spawn
+		EnemyHealth = MaxEnemyHealth;
+		EnemyBar.Value = EnemyHealth;
+
 		Visible = true;
 	}
 	
-	public void DamageEnemy()
+	
+	public void DamageEnemy(int dmg = 1)
 	{
-		EnemyHealth -= 2;
+		EnemyHealth -= dmg;
 		EnemyBar.Value = EnemyHealth;
 		
-		if(EnemyHealth <= 0)
+		if (EnemyHealth <= 0)
 		{
-			this.Visible = false;
-			EnemyBar.Value = MaxEnemyHealth;
+			Visible = false;
 		}
 	}
 }

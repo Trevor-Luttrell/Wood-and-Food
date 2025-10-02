@@ -21,6 +21,8 @@ public partial class Waf : Node2D
 		resources = GetNode<Resources>("Resources");
 		floor = GetNode<TileMapLayer>("Board");
 		player.OnMoveFinished += OnPlayerMoveFinished;
+		var musicPlayer = GetNode<AudioStreamPlayer2D>("MusicPlayer");
+    	musicPlayer.Play();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -60,10 +62,13 @@ public partial class Waf : Node2D
 
 	public void RunPlayerMoveChecks(Direction dir)
 	{
-		if(enemy.Visible == true)
+			if (enemy.Visible == true)
 		{
-			enemy.DamageEnemy();
-			player.DamagePlayer();
+		int dmg = 1;
+		if (player.HasSword()) dmg = 2; // sword doubles damage
+
+		enemy.DamageEnemy(dmg);
+		player.DamagePlayer();
 		}
 		else if(PlayerCanMove(dir))
 		{
@@ -73,7 +78,14 @@ public partial class Waf : Node2D
 		else if(resources.GetCellTileData(player.Coords.Offset(dir)) != null)
 		{
 			string ResourceType = resources.GetResourceType(player.Coords.Offset(dir));
-			resources.DamageResource(player.Coords.Offset(dir));
+			var targetCell = player.Coords.Offset(dir);
+			int damageAmount = 2; // default damage
+
+			// Axe bonus: chop wood faster
+		if (ResourceType == "Wood" && player.HasAxe())
+    		damageAmount = 4; // axe deals double damage to wood
+
+			resources.DamageResource(targetCell, damageAmount);
 			player.GivePlayerItem(ResourceType);
 			player.CheckForWin();
 		}

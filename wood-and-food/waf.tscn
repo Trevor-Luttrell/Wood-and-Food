@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=4 uid="uid://j21ccvhsgulq"]
+[gd_scene load_steps=46 format=4 uid="uid://j21ccvhsgulq"]
 
 [ext_resource type="Script" uid="uid://dph7aadxhdo34" path="res://Scripts/Waf.cs" id="1_g4otn"]
 [ext_resource type="Texture2D" uid="uid://dbvwwpyk4lnkh" path="res://Assets/atlas_floor-16x16.png" id="1_iwxth"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cq2a6ekpqba1y" path="res://Assets/Firepit2.png" id="10_dgr2x"]
 [ext_resource type="Texture2D" uid="uid://bjx2o3pfi143m" path="res://Assets/Firepit3.png" id="11_oh3rn"]
 [ext_resource type="Texture2D" uid="uid://cxw7tiyxdrlh6" path="res://Assets/Firepit4.png" id="12_waphi"]
+[ext_resource type="AudioStream" uid="uid://cwpw537j672yg" path="res://Ludum Dare 28 03.ogg" id="16_kjncl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6cpde"]
 texture = ExtResource("1_iwxth")
@@ -1353,5 +1354,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "You died..."
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_kjncl")
+parameters/looping = true
 
 [connection signal="OnMoveFinished" from="Player" to="." method="OnPlayerMoveFinished"]
