@@ -27,7 +27,6 @@ public partial class Enemy : Node2D
 			coords.Y * Constants.TILE_HEIGHT
 		);
 
-		// Reset health every spawn
 		EnemyHealth = MaxEnemyHealth;
 		EnemyBar.Value = EnemyHealth;
 

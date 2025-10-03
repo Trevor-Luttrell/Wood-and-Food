@@ -25,17 +25,23 @@ public partial class Resources : TileMapLayer
 		return tileData.GetCustomData("ResourceType").AsString();
 	}
 	
-	public void DamageResource(Vector2I coords, int dmg = 2)
+	public int DamageResource(Vector2I coords, int dmg = 2)
 	{
 		int currentHealth = GetHealth(coords);
-
+		int previousHealth = currentHealth;
+		int damageDone = dmg;
+		
 		currentHealth -= dmg;
+		
 		ResourceHealth[coords] = currentHealth;
 		
 		if (currentHealth <= 0)
 		{
+			damageDone = previousHealth;
 			SetCell(coords, -1);
 			ResourceHealth.Remove(coords);
 		}
+		
+		return damageDone;
 	}
 }

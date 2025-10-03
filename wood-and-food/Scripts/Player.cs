@@ -169,9 +169,10 @@ public partial class Player : Node2D
 		AxeLabel.Text = $"Axe: {inventory["Axe"]}";
 	}
 
-	public void GivePlayerItem(string ResourceType)
+	public void GivePlayerItem(string ResourceType, int damageDone)
 	{
-		inventory[ResourceType]++;
+		
+		inventory[ResourceType] += damageDone / 2;
 		UpdateInventoryLabels();
 		CheckForCrafting();
 	}
@@ -189,46 +190,35 @@ public partial class Player : Node2D
 		if (inventory["Berry"] > 0)
 		{
 			inventory["Berry"] -= 1;
-
-
+			
 			int restoreAmount = 5;
 			Stamina = Math.Min(Stamina + restoreAmount, MaxStamina);
 
 			HealthBar.Value = Stamina;
 			UpdateStaminaLabel();
 			UpdateInventoryLabels();
-
-			GD.Print($"Ate a berry! Restored {restoreAmount} stamina.");
-		}
-		else
-		{
-			GD.Print("No berries left!");
 		}
 	}
 
 
 	public void CheckForCrafting()
 	{
-		// Axe crafting: needs 3 wood
 		if (inventory["Wood"] >= 3 && inventory["Axe"] == 0)
 		{
-			inventory["Axe"] = 1; // give axe
-			inventory["Wood"] -= 3; // consume wood
-			GD.Print("Crafted an Axe!");
+			inventory["Axe"] = 1;
+			inventory["Wood"] -= 3;
 			UpdateInventoryLabels();
 		}
 
-		// Sword crafting: needs 4 rocks
 		if (inventory["Rock"] >= 4 && inventory["Sword"] == 0)
 		{
-			inventory["Sword"] = 1; // give sword
-			inventory["Rock"] -= 4; // consume rocks
-			GD.Print("Crafted a Sword!");
+			inventory["Sword"] = 1;
+			inventory["Rock"] -= 4;
 			UpdateInventoryLabels();
 		}
 	}
 
-		public bool HasSword()
+	public bool HasSword()
 	{
 		return inventory["Sword"] > 0;
 	}

@@ -22,16 +22,16 @@ public partial class Waf : Node2D
 		floor = GetNode<TileMapLayer>("Board");
 		player.OnMoveFinished += OnPlayerMoveFinished;
 		var musicPlayer = GetNode<AudioStreamPlayer2D>("MusicPlayer");
-    	musicPlayer.Play();
+		musicPlayer.Play();
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		 if (@event.IsActionPressed("eat"))
-    	{
-        	player.EatBerry();
-        	return; // don’t process as movement
-    	}
+		{
+			player.EatBerry();
+			return;
+		}
 		if (state != State.Ready) return;
 
 		Direction? movedir = null;
@@ -62,13 +62,13 @@ public partial class Waf : Node2D
 
 	public void RunPlayerMoveChecks(Direction dir)
 	{
-			if (enemy.Visible == true)
+		if (enemy.Visible == true)
 		{
-		int dmg = 1;
-		if (player.HasSword()) dmg = 2; // sword doubles damage
+			int dmg = 1;
+			if (player.HasSword()) dmg = 2;
 
-		enemy.DamageEnemy(dmg);
-		player.DamagePlayer();
+			enemy.DamageEnemy(dmg);
+			player.DamagePlayer();
 		}
 		else if(PlayerCanMove(dir))
 		{
@@ -79,14 +79,13 @@ public partial class Waf : Node2D
 		{
 			string ResourceType = resources.GetResourceType(player.Coords.Offset(dir));
 			var targetCell = player.Coords.Offset(dir);
-			int damageAmount = 2; // default damage
+			int damageAmount = 2;
 
-			// Axe bonus: chop wood faster
-		if (ResourceType == "Wood" && player.HasAxe())
-    		damageAmount = 4; // axe deals double damage to wood
+			if (ResourceType == "Wood" && player.HasAxe())
+				damageAmount = 4;
 
-			resources.DamageResource(targetCell, damageAmount);
-			player.GivePlayerItem(ResourceType);
+			int damageDone = resources.DamageResource(targetCell, damageAmount);
+			player.GivePlayerItem(ResourceType, damageDone);
 			player.CheckForWin();
 		}
 		else
