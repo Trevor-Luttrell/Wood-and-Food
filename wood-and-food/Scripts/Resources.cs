@@ -13,7 +13,7 @@ public partial class Resources : TileMapLayer
 			if(GetResourceType(coords) != "Crystal")
 				ResourceHealth[coords] = 10;
 			else
-				ResourceHealth[coords] = 1;
+				ResourceHealth[coords] = 2;
 		}
 		
 		return ResourceHealth[coords];
