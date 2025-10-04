@@ -125,7 +125,7 @@ public partial class Waf : Node2D
 	
 	private void SpawnEnemyNearPlayer()
 	{
-		enemy.EnemyHealth = 10;
+		enemy.EnemyHealth = 12;
 		
 		var directions = new Direction[]
 		{

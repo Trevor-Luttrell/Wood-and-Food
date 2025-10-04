@@ -3,8 +3,8 @@ using System;
 
 public partial class Enemy : Node2D
 {
-	public int EnemyHealth = 10;
-	public int MaxEnemyHealth = 10;
+	public int EnemyHealth = 12;
+	public int MaxEnemyHealth = 12;
 	
 	private AnimatedSprite2D sprite;
 	private ProgressBar EnemyBar;
