@@ -32,7 +32,7 @@ public partial class Waf : Node2D
 			player.EatBerry();
 			return;
 		}
-		if (@event.IsActionPressed("restart") && player.DeathScreen.Visible)
+		if (@event.IsActionPressed("restart") && (player.DeathScreen.Visible || player.WinScreen.Visible))
 		{
 			GetTree().ReloadCurrentScene();
 			return;

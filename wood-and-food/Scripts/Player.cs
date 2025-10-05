@@ -51,7 +51,7 @@ public partial class Player : Node2D
 	private Label SwordLabel;
 	private Label AxeLabel;
 
-	private Panel WinScreen;
+	public Panel WinScreen;
 	public Panel DeathScreen;
 
 	public override void _Ready()
