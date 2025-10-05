@@ -32,6 +32,11 @@ public partial class Waf : Node2D
 			player.EatBerry();
 			return;
 		}
+		if (@event.IsActionPressed("restart") && player.DeathScreen.Visible)
+		{
+			GetTree().ReloadCurrentScene();
+			return;
+		}
 		if (state != State.Ready) return;
 
 		Direction? movedir = null;

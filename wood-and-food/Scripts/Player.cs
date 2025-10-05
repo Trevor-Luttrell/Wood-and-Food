@@ -52,7 +52,7 @@ public partial class Player : Node2D
 	private Label AxeLabel;
 
 	private Panel WinScreen;
-	private Panel DeathScreen;
+	public Panel DeathScreen;
 
 	public override void _Ready()
 	{
